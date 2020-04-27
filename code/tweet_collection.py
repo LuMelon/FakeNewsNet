@@ -44,11 +44,12 @@ def dump_tweet_information(tweet_chunk: list, config: Config, twython_connector:
                 json.dump(tweet_object, open("{}/{}.json".format(tweet_dir, tweet.tweet_id), "w"))
 
     except TwythonRateLimitError:
+        print("Twython API rate limit exception")
         logging.exception("Twython API rate limit exception")
 
     except Exception as ex:
         logging.exception("exception in collecting tweet objects")
-
+        print("exception in collecting tweet objects:", str(ex))
     return None
 
 
